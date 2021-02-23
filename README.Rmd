@@ -1,0 +1,103 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# bsscol
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+bsscol allows for a simple integration of the BSS base colors into ggplot2 and alike.
+
+## installation
+
+You can install the released version of bsscol from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("bsscol")
+```
+In order to run the following examples you'll also need:
+``` r
+install.packages("ggplot2")
+install.packages("plotrix")
+```
+## load Packages
+
+```{r example}
+library(bsscol)
+library(ggplot2)
+library(plotrix)
+```
+
+## the Colors
+
+```{r}
+# the colors
+bss_colors
+pie3D(rep(10, 5),explode=0, theta=1.2, col=bss_colors, main="bss_colors")
+```
+
+## function: bss_cols()
+The bss_cols function allows you to get hex colors in a robust and flexible way.
+
+```{r bss_cols}
+# to get the information of a color
+bss_cols("red")
+# or to just use a color in a plot
+ggplot(mtcars, aes(hp, mpg)) +
+  geom_point(color = bss_cols("red"),
+             size = 2, alpha = .8)
+```
+
+## function: bss_pal()
+With a subset of palettes of the original colors this function allows to
+interpolate the palette colors for a certain number of levels, making it
+possible to create shades between the original colors. To demonstrate, we can 
+```{r bss_pal}
+# the following subset color palettes are available 
+bss_palettes
+# interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:
+bss_pal("rgb")(9)
+pie3D(rep(10, 9),explode=0, theta=1.2, col=bss_pal("rgb")(9), main="bss_pal()")
+```
+
+
+## function: scale_color_bss()
+```{r scale_color_bss}
+# Color by discrete variable using default palette
+ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
+  geom_point(size = 2) +
+  scale_color_bss()
+
+# Color by numeric variable with cool palette
+ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
+  geom_point(size = 2, alpha = .6) +
+  scale_color_bss(discrete = FALSE, palette = "cool")
+```
+
+
+## function: scale_fill_bss()
+```{r scale_fill_bss}
+# Fill by discrete variable with different palette + remove legend (guide)
+ggplot(mpg, aes(manufacturer, fill = manufacturer)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_bss(palette = "main", guide = "none")
+```
+
+
+
+
+
+
