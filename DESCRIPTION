@@ -14,4 +14,5 @@ Depends:
 URL: https://github.com/qwertzlbry/bsscol
 BugReports: https://github.com/qwertzlbry/bsscol/issues
 Imports: 
-    ggplot2
+    ggplot2,
+    grDevices 

@@ -7,6 +7,10 @@
 bss_pal(palette = "main", reverse = FALSE, ...)
 }
 \arguments{
+\item{palette}{define which palette to use, main by default}
+
+\item{reverse}{reverses the palettes' order}
+
 \item{...}{}
 }
 \value{

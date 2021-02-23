@@ -12,13 +12,13 @@ bss_palettes <- list(
 
 #' @title bss_pal
 #'
-#' @param palette
-#' @param reverse
+#' @param palette define which palette to use, main by default
+#' @param reverse reverses the palettes' order
 #' @param ...
 #'
 #' @return
 #' @export
-#'
+#' @import grDevices
 #' @examples
 bss_pal <- function(palette = "main", reverse = FALSE, ...) {
   pal <- bss_palettes[[palette]]
