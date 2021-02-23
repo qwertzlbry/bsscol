@@ -11,14 +11,5 @@ LazyData: true
 RoxygenNote: 7.1.1
 Depends: 
     R (>= 2.10)
-
- 
-
-
-
-
-
-
-
-
-
+URL: https://github.com/qwertzlbry/bsscol
+BugReports: https://github.com/qwertzlbry/bsscol/issues
