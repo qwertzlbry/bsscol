@@ -12,10 +12,17 @@ ggplot2 and alike.
 ## installation
 
 You can install the released version of bsscol from
-[CRAN](https://CRAN.R-project.org) with:
+[Github](https://github.com/qwertzlbry/bsscol) with:
 
 ``` r
-install.packages("bsscol")
+library(devtools) # install devtool first if not installed
+install_github("qwertzlbry/bsscol")
+```
+
+With a future CRAN approval the package could be installed with:
+
+``` r
+install.packages("bsscol") # currently the installation works only over github
 ```
 
 In order to run the following examples you’ll also need:
@@ -25,7 +32,7 @@ install.packages("ggplot2")
 install.packages("plotrix")
 ```
 
-## load Packages
+## load packages
 
 ``` r
 library(bsscol)
@@ -33,7 +40,7 @@ library(ggplot2)
 library(plotrix)
 ```
 
-## the Colors
+## the colors
 
 ``` r
 # the colors
@@ -45,7 +52,7 @@ pie3D(rep(10, 5),explode=0, theta=1.2, col=bss_colors, main="bss_colors")
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-## function: bss\_cols()
+## function: bss\_cols() - examples
 
 The bss\_cols function allows you to get hex colors in a robust and
 flexible way.
@@ -63,7 +70,7 @@ ggplot(mtcars, aes(hp, mpg)) +
 
 <img src="man/figures/README-bss_cols-1.png" width="100%" />
 
-## function: bss\_pal()
+## function: bss\_pal() - examples
 
 With a subset of palettes of the original colors this function allows to
 interpolate the palette colors for a certain number of levels, making it
@@ -89,6 +96,7 @@ bss_palettes
 #> $main
 #>  sky blue    yellow       red     green      blue 
 #> "#6bc5ff" "#eeec22" "#e5233d" "#abe441" "#155f90"
+
 # interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:
 bss_pal("rgb")(9)
 #> [1] "#E5233D" "#D6533E" "#C8833F" "#B9B340" "#ABE441" "#85C254" "#60A168"
@@ -98,7 +106,7 @@ pie3D(rep(10, 9),explode=0, theta=1.2, col=bss_pal("rgb")(9), main="bss_pal()")
 
 <img src="man/figures/README-bss_pal-1.png" width="100%" />
 
-## function: scale\_color\_bss()
+## function: scale\_color\_bss() - example
 
 Custom color scale functions for ggplot2.
 
@@ -120,7 +128,7 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 
 <img src="man/figures/README-scale_color_bss-2.png" width="100%" />
 
-## function: scale\_fill\_bss()
+## function: scale\_fill\_bss() - example
 
 Custom fill scale functions for ggplot2.
 

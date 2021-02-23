@@ -7,7 +7,7 @@
 #'
 #' @return
 #' @export
-#'
+#' @import ggplot2
 #' @examples
 scale_color_bss <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
   pal <- bss_pal(palette = palette, reverse = reverse)
@@ -29,7 +29,7 @@ scale_color_bss <- function(palette = "main", discrete = TRUE, reverse = FALSE, 
 #'
 #' @return
 #' @export
-#'
+#' @import ggplot2
 #' @examples
 scale_fill_bss <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
   pal <- bss_pal(palette = palette, reverse = reverse)

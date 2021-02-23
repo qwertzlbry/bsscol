@@ -7,6 +7,12 @@
 scale_color_bss(palette = "main", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
+\item{palette}{Character name of palette in bss_palettes}
+
+\item{discrete}{Boolean indicating whether color aesthetic is discrete or not}
+
+\item{reverse}{Boolean indicating whether the palette should be reversed}
+
 \item{...}{}
 }
 \value{
