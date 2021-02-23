@@ -63,7 +63,9 @@ ggplot(mtcars, aes(hp, mpg)) +
 ## function: bss_pal()
 With a subset of palettes of the original colors this function allows to
 interpolate the palette colors for a certain number of levels, making it
-possible to create shades between the original colors. To demonstrate, we can 
+possible to create shades between the original colors. Further, it gets a
+pallete by name from the list ("main" by default) and has a boolean condition
+determining whether to reverse the order or not.
 ```{r bss_pal}
 # the following subset color palettes are available 
 bss_palettes
