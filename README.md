@@ -67,8 +67,9 @@ ggplot(mtcars, aes(hp, mpg)) +
 
 With a subset of palettes of the original colors this function allows to
 interpolate the palette colors for a certain number of levels, making it
-possible to create shades between the original colors. To demonstrate,
-we can
+possible to create shades between the original colors. Further, it gets
+a pallette by name from the list (“main” by default) and has a boolean
+condition determining whether to reverse the order or not.
 
 ``` r
 # the following subset color palettes are available 
@@ -99,6 +100,8 @@ pie3D(rep(10, 9),explode=0, theta=1.2, col=bss_pal("rgb")(9), main="bss_pal()")
 
 ## function: scale\_color\_bss()
 
+Custom color scale functions for ggplot2.
+
 ``` r
 # Color by discrete variable using default palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
@@ -118,6 +121,8 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 <img src="man/figures/README-scale_color_bss-2.png" width="100%" />
 
 ## function: scale\_fill\_bss()
+
+Custom fill scale functions for ggplot2.
 
 ``` r
 # Fill by discrete variable with different palette + remove legend (guide)
