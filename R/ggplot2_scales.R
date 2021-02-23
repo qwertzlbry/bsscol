@@ -1,8 +1,8 @@
 #' @title scale_color_bss
 #'
-#' @param palette
-#' @param discrete
-#' @param reverse
+#' @param palette Character name of palette in bss_palettes
+#' @param discrete Boolean indicating whether color aesthetic is discrete or not
+#' @param reverse Boolean indicating whether the palette should be reversed
 #' @param ...
 #'
 #' @return
@@ -22,9 +22,9 @@ scale_color_bss <- function(palette = "main", discrete = TRUE, reverse = FALSE, 
 
 #' @title scale_fill_bss
 #'
-#' @param palette
-#' @param discrete
-#' @param reverse
+#' @param palette Character name of palette in bss_palettes
+#' @param discrete Boolean indicating whether color aesthetic is discrete or not
+#' @param reverse Boolean indicating whether the palette should be reversed
 #' @param ...
 #'
 #' @return
