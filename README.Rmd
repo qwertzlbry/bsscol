@@ -69,6 +69,7 @@ determining whether to reverse the order or not.
 ```{r bss_pal}
 # the following subset color palettes are available 
 bss_palettes
+
 # interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:
 bss_pal("rgb")(9)
 pie3D(rep(10, 9),explode=0, theta=1.2, col=bss_pal("rgb")(9), main="bss_pal()")
