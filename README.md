@@ -32,6 +32,7 @@ install.packages("ggplot2")
 install.packages("plotrix")
 install.packages("dplyr")
 install.packages("hues")
+install.packages("DT")
 ```
 
 ## load packages
@@ -50,31 +51,23 @@ library(dplyr)
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
+library(DT)
 ```
 
 ## the colors
 
 ``` r
 # the colors and hex codes
-bss_colors
-#> # A tibble: 60 x 11
-#>    R     G     B     hex    colour   Typ Full      col_pal hashed_hex excel_form
-#>    <chr> <chr> <chr> <chr>  <lgl>  <dbl> <chr>       <dbl> <chr>           <dbl>
-#>  1 255   255   255   FFFFFF NA         0 255,255,~       1 #FFFFFF             1
-#>  2 0     0     0     000000 NA         0 0,0,0           2 #000000             2
-#>  3 242   242   242   F2F2F2 NA         0 242,242,~       3 #F2F2F2             3
-#>  4 191   191   191   BFBFBF NA         0 191,191,~       4 #BFBFBF             4
-#>  5 21    95    144   155F90 NA         0 21,95,144       5 #155F90             5
-#>  6 171   228   65    ABE441 NA         0 171,228,~       6 #ABE441             6
-#>  7 229   35    61    E5233D NA         0 229,35,61       7 #E5233D             7
-#>  8 238   236   34    EEEC22 NA         0 238,236,~       8 #EEEC22             8
-#>  9 107   197   255   6BC5FF NA         0 107,197,~       9 #6BC5FF             9
-#> 10 237   246   249   EDF6F9 NA         0 237,246,~      10 #EDF6F9            10
-#> # ... with 50 more rows, and 1 more variable: name <chr>
-pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
+datatable(bss_colors, extensions = "Scroller", width = 1000, options = list(scrollY = 200, scroller = TRUE, scrollX = 200, pageLength = 1))
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+``` r
+pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
+```
+
+<img src="man/figures/README-unnamed-chunk-2-2.png" width="100%" />
 
 ``` r
 #hashes <- bss_colors$hashed_hex
@@ -83,20 +76,20 @@ bss_colors <- bss_colors[order(bss_colors$col_pal),]
 swatch(bss_colors$hashed_hex)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-3.png" width="100%" />
 
 ``` r
 choice <- bss_colors %>% filter(col_pal == 7) 
 swatch(choice$hashed_hex)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-4.png" width="100%" />
 
 ``` r
 swatch(basic_colors)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-5.png" width="100%" />
 
 ## function: bss\_cols() - examples
 
@@ -194,7 +187,7 @@ Custom fill scale functions for ggplot2.
 
 ``` r
 # Fill by discrete variable with different palette + remove legend (guide)
-ggplot(mpg, aes(manufacturer, fill = manufacturer)) +
+ggplot(mpg, aes(model          , fill = model         )) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_bss(palette = "main", guide = "none")

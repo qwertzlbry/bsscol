@@ -4,7 +4,12 @@
 \alias{scale_color_bss}
 \title{scale_color_bss}
 \usage{
-scale_color_bss(palette = "main", discrete = TRUE, reverse = FALSE, ...)
+scale_color_bss(
+  palette = "main_only_color",
+  discrete = TRUE,
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Character name of palette in bss_palettes}
