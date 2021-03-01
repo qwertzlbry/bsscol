@@ -1,5 +1,9 @@
 ---
-output: github_document
+output:
+  github_document: default
+  pdf_document: default
+  html_document:
+    df_print: paged
 always_allow_html: yes
 ---
 
