@@ -52,14 +52,22 @@ library(ggplot2)
 library(plotrix)
 library(hues)
 library(dplyr)
-library(DT)
+library(kableExtra)
 ```
 
 ## the colors
 
 ```{r}
-# the colors and hex codes
-datatable(bss_colors, extensions = "Scroller", width = 1000, options = list(scrollY = 200, scroller = TRUE, scrollX = 200, pageLength = 1))
+# the colors, RGB and hex codes 
+bss_colors <- bss_colors %>% arrange(col_pal) %>% select(-colour)
+bss_dt <- bss_colors
+bss_dt$hashed_hex = cell_spec(
+  bss_dt$hashed_hex, color = "white", align = "c", #angle = 2, 
+  background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
+
+kbl(bss_dt, escape = F) %>%
+  kable_paper("striped", full_width = F)
+
 pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
 #hashes <- bss_colors$hashed_hex
 bss_colors <- bss_colors[order(bss_colors$col_pal),] 
