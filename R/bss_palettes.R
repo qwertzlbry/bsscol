@@ -1,13 +1,20 @@
 #'define palettes
 #' @export
+#' @import dplyr
+#'
 bss_palettes <- list(
-  `rgb`   = bss_cols("red", "green", "blue"),
-
-  `cool`  = bss_cols("blue", "sky blue", "green"),
-
-  `hot`   = bss_cols("yellow", "red", "green"),
-
-  `main`   = bss_cols("sky blue", "yellow", "red", "green", "blue"))
+  `monochrom_black1` = bss_colors %>% filter(col_pal==1) %>% select(hashed_hex) %>% t(),
+  `monochrom_green`  = bss_colors %>% filter(col_pal==6) %>% select(hashed_hex) %>% t(),
+  `monochrom_red`    = bss_colors %>% filter(col_pal==7) %>% select(hashed_hex) %>% t(),
+  `monochrom_yellow` = bss_colors %>% filter(col_pal==8) %>% select(hashed_hex) %>% t(),
+  `monochrom_blue`   = bss_colors %>% filter(col_pal==9) %>% select(hashed_hex) %>% t(),
+  `main`             = bss_colors %>% filter(Typ==0)     %>% select(hashed_hex) %>% t(),
+  `main_only_color`  = bss_colors %>% filter(Typ==0,col_pal==5|
+                                             col_pal==6|
+                                             col_pal==7|
+                                             col_pal==8|
+                                             col_pal==9) %>% select(hashed_hex) %>% t()
+  )
 
 
 #' @title bss_pal
@@ -19,8 +26,9 @@ bss_palettes <- list(
 #' @return
 #' @export
 #' @import grDevices
+#' @import dplyr
 #' @examples
-bss_pal <- function(palette = "main", reverse = FALSE, ...) {
+bss_pal <- function(palette = "main_only_color", reverse = FALSE, ...) {
   pal <- bss_palettes[[palette]]
 
   if (reverse) pal <- rev(pal)

@@ -4,7 +4,7 @@
 \alias{bss_pal}
 \title{bss_pal}
 \usage{
-bss_pal(palette = "main", reverse = FALSE, ...)
+bss_pal(palette = "main_only_color", reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{define which palette to use, main by default}

@@ -2,6 +2,9 @@
 output: github_document
 ---
 
+
+
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
@@ -35,6 +38,8 @@ In order to run the following examples you'll also need:
 ``` r
 install.packages("ggplot2")
 install.packages("plotrix")
+install.packages("dplyr")
+install.packages("hues")
 ```
 ## load packages
 
@@ -42,6 +47,8 @@ install.packages("plotrix")
 library(bsscol)
 library(ggplot2)
 library(plotrix)
+library(hues)
+library(dplyr)
 ```
 
 ## the colors
@@ -49,17 +56,24 @@ library(plotrix)
 ```{r}
 # the colors and hex codes
 bss_colors
-pie3D(rep(10, 5),explode=0, theta=1.2, col=bss_colors, main="bss_colors")
+pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
+#hashes <- bss_colors$hashed_hex
+bss_colors <- bss_colors[order(bss_colors$col_pal),] 
+
+swatch(bss_colors$hashed_hex)
+choice <- bss_colors %>% filter(col_pal == 7) 
+swatch(choice$hashed_hex)
+swatch(basic_colors)
 ```
 
 ## function: bss_cols() - examples
 The bss_cols function allows you to get and reference hex colors in a robust and flexible way.
 ```{r bss_cols}
 # to get the information of a color
-bss_cols("red")
+bss_cols("rot")
 # or to just use a color in a plot
 ggplot(mtcars, aes(hp, mpg)) +
-  geom_point(color = bss_cols("red"),
+  geom_point(color = bss_cols("rot"),
              size = 2, alpha = .8)
 ```
 
@@ -74,8 +88,8 @@ a boolean condition determining whether to reverse the order or not.
 bss_palettes
 
 # interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:
-bss_pal("rgb")(9)
-pie3D(rep(10, 9),explode=0, theta=1.2, col=bss_pal("rgb")(9), main="bss_pal()")
+bss_pal("main_only_color")(5)
+pie3D(rep(5, 6),explode=0, theta=1.2, col=bss_pal("monochrom_yellow")(6), main="bss_pal('monochrom_yellow')(6)")
 ```
 
 
@@ -90,7 +104,7 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
 # Color by numeric variable with cool palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
   geom_point(size = 2, alpha = .6) +
-  scale_color_bss(discrete = FALSE, palette = "cool")
+  scale_color_bss(discrete = FALSE, palette = "monochrom_red")
 ```
 
 

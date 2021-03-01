@@ -5,7 +5,7 @@
 \alias{bss_colors}
 \title{Define color vectorF and unctionalize the data, this  allows us to get hex colors in a robust and flexible way.}
 \format{
-An object of class \code{character} of length 5.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 60 rows and 11 columns.
 }
 \usage{
 bss_colors
