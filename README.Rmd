@@ -134,7 +134,7 @@ pie3D(rep(5, 50),explode=0, theta=1.2, col=bss_pal(rev = T,"monochrom_yellow")(5
 
 
 ## function: scale_color_bss() - example
-`scale_color_bss()` is a custom color scale functions for ggplot2 plots. The same could also be achived with the function `scale_colour_manual` of the ggplot2 package. However, the usage of the bsscol palettes makes this process more tidy and efficient. In the function two boolean parameters `discrete = T/F, reverse = T/F` can be choosen.
+`scale_color_bss()` is a custom color scale function for ggplot2 plots. The same could also be achieved with the function `scale_colour_manual` of the ggplot2 package. However, the usage of the bsscol palettes makes this process more tidy and efficient. In the function two boolean parameters `discrete = T/F, reverse = T/F` can be choosen.
 ```{r scale_color_bss}
 # Color by discrete variable using default palette main_only_color
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
@@ -150,7 +150,7 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 ```
 
 ## function: scale_fill_bss() - example
-`scale_fill_bss()` is a custom fill scale functions for ggplot2 plots. The same could also be achived with the function `scale_fill_manual` of the ggplot2 package. However, the usage of the bsscol palettes makes this process more tidy and efficient. The shades of colors is automattically extended when using more colors than a palettes has to offer.In the function to boolean parameters `discrete = T/F, reverse = T/F` can be choosen.
+`scale_fill_bss()` is a custom fill scale function for ggplot2 plots. The same could also be achieved with the function `scale_fill_manual` of the ggplot2 package. However, the usage of the bsscol palettes makes this process more tidy and efficient. The shades of colors is automattically extended when using more colors than a palettes has to offer.In the function to boolean parameters `discrete = T/F, reverse = T/F` can be choosen.
 ```{r scale_fill_bss}
 # Fill by discrete variable with the main palette + remove legend (guide)
 ggplot(mpg, aes(model          , fill = model         )) +
