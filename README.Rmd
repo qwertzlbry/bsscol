@@ -1,9 +1,9 @@
 ---
 output:
-  github_document: default
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
+  github_document: default
 always_allow_html: yes
 ---
 
@@ -69,8 +69,9 @@ bss_dt$hashed_hex = cell_spec(
   bss_dt$hashed_hex, color = "white", align = "c", #angle = 2,
   background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
 
-    kbl(bss_dt, escape = F, format = "markdown") %>%
-      kable_paper("striped", full_width = F)
+    kbl(bss_dt, escape = F, format = "html") %>%
+      kable_paper("striped", full_width = F) 
+          # save_kable("inst/test.png")
 
 pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
 #hashes <- bss_colors$hashed_hex
