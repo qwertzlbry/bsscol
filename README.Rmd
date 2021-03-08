@@ -1,6 +1,12 @@
 ---
 output:
   github_document: default
+  html_document: default
+---
+````
+---
+output:
+  github_document: default
   pdf_document: default
   html_document:
     df_print: paged
@@ -69,8 +75,8 @@ bss_dt$hashed_hex = cell_spec(
   bss_dt$hashed_hex, color = "white", align = "c", #angle = 2,
   background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
 
-kbl(bss_dt, escape = F, format = "markdown") %>%
-  kable_paper("striped", full_width = F)
+    kbl(bss_dt, escape = F, format = "markdown") %>%
+      kable_paper("striped", full_width = F)
 
 pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
 #hashes <- bss_colors$hashed_hex
@@ -133,7 +139,7 @@ ggplot(mpg, aes(model          , fill = model         )) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_bss(palette = "main", guide = "none")
 ```
-
+````
 
 
 
