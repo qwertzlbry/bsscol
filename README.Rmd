@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 bsscol allows for a simple integration of the BSS base colors into ggplot2 and alike.
 
-### installation
+### installation and loading
 
 You can install the released version of bsscol from [Github](https://github.com/qwertzlbry/bsscol) with:
 ``` r
@@ -49,16 +49,17 @@ install.packages("ggplot2")
 install.packages("plotrix")
 install.packages("dplyr")
 install.packages("hues")
+install.packages("ggthemes")
 install.packages("DT")
+install.packages("kableExtra")
 
 ```
-### load packages
-
 ```{r example, warning=FALSE, results='hide', echo=TRUE, quietly=T}
 library(bsscol)
 library(ggplot2)
 library(plotrix)
 library(hues)
+library(ggthemes)
 library(dplyr, warn.conflicts=F, quietly=T)
 library(kableExtra, warn.conflicts=F, quietly=T)
 ```
@@ -106,7 +107,8 @@ bss_cols("rot")
 # or to just use a color in a plot
 ggplot(mtcars, aes(hp, mpg)) +
   geom_point(color = bss_cols("rot"),
-             size = 2, alpha = .8)
+             size = 2, alpha = .8)+ 
+  theme_hc()
 ```
 
 ## function: bss_pal() - examples
@@ -137,12 +139,14 @@ pie3D(rep(5, 50),explode=0, theta=1.2, col=bss_pal(rev = T,"monochrom_yellow")(5
 # Color by discrete variable using default palette main_only_color
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
   geom_point(size = 2) +
-  scale_color_bss()
+  scale_color_bss() +
+  theme_hc()
 
 # Color by numeric variable with monochrom_red palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
   geom_point(size = 2, alpha = .6) +
-  scale_color_bss(discrete = FALSE, palette = "monochrom_red")
+  scale_color_bss(discrete = FALSE, palette = "monochrom_red")+
+  theme_hc()
 ```
 
 ## function: scale_fill_bss() - example
@@ -152,7 +156,8 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 ggplot(mpg, aes(model          , fill = model         )) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_bss(palette = "main", guide = "none")
+  scale_fill_bss(palette = "main", guide = "none")+
+  theme_hc()
 ```
 
 
