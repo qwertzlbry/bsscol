@@ -76,9 +76,9 @@ bss_dt$hashed_hex = cell_spec(
   bss_dt$hashed_hex, color = "white", align = "c", #angle = 2,
   background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
 
-    kbl(bss_dt, escape = F, format = "markdown") %>%
-      kable_paper("striped", full_width = F)  
-          #save_kable("inst/color_table.png")
+    kbl(bss_dt, escape = F, format = "html") %>%
+      kable_paper("striped", full_width = F)   
+          # save_kable("inst/color_table.png")
 ```
 Filtering the table by e.g. palettes (col_pal)
 ```{r}
