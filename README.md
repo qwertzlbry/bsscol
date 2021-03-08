@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# bsscol
+# bsscol ReadMe
 
 <!-- badges: start -->
 
@@ -10,7 +10,7 @@
 bsscol allows for a simple integration of the BSS base colors into
 ggplot2 and alike.
 
-## installation
+### installation and loading
 
 You can install the released version of bsscol from
 [Github](https://github.com/qwertzlbry/bsscol) with:
@@ -19,6 +19,10 @@ You can install the released version of bsscol from
 library(devtools) # install devtool first if not installed
 install_github("qwertzlbry/bsscol")
 ```
+
+Or just copy the package folder from:
+“\(G:\BSS\Administration\05_BSS_Vorlagen\Farben_R_Stata\bsscol\)” into
+your local R library and load it.
 
 With a future CRAN approval the package could be installed with:
 
@@ -33,53 +37,27 @@ install.packages("ggplot2")
 install.packages("plotrix")
 install.packages("dplyr")
 install.packages("hues")
+install.packages("ggthemes")
 install.packages("DT")
+install.packages("kableExtra")
 ```
-
-## load packages
 
 ``` r
 library(bsscol)
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 3.6.3
 library(plotrix)
-#> Warning: package 'plotrix' was built under R version 3.6.3
 library(hues)
-#> Warning: package 'hues' was built under R version 3.6.3
-library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-library(kableExtra)
-#> Warning: package 'kableExtra' was built under R version 3.6.3
-#> 
-#> Attaching package: 'kableExtra'
-#> The following object is masked from 'package:dplyr':
-#> 
-#>     group_rows
+library(ggthemes)
+library(dplyr, warn.conflicts=F, quietly=T)
+library(kableExtra, warn.conflicts=F, quietly=T)
 ```
 
 ## the colors
 
-``` r
-#the colors, RGB and hex codes
-bss_colors <- bss_colors %>% dplyr::arrange(col_pal) %>% dplyr::select(-colour)
-bss_dt <- bss_colors
-bss_dt$hashed_hex = cell_spec(
-  bss_dt$hashed_hex, color = "white", align = "c", #angle = 2,
-  background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
+### all colors
 
-    kbl(bss_dt, escape = F, format = "markdown") %>%
-      kable_paper("striped", full_width = F)
-#> Warning in kable_styling(kable_input, "none", htmltable_class = light_class, :
-#> Please specify format in kable. kableExtra can customize either HTML or LaTeX
-#> outputs. See https://haozhu233.github.io/kableExtra/ for details.
-```
+The following table contains all the BSS colors. When the package is
+loaded this table can be called with the `bss_colors` command.
 
 | R   | G   | B   | hex    |  Typ | Full        | col\_pal | hashed\_hex                                                                                                                                                               | excel\_form | name      |
 | :-- | :-- | :-- | :----- | ---: | :---------- | -------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------: | :-------- |
@@ -144,41 +122,49 @@ bss_dt$hashed_hex = cell_spec(
 | 30  | 77  | 91  | 1E4D5B | \-75 | 30,77,91    |       10 | <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #1E4D5B !important;text-align: c;">\#1E4D5B</span> |          50 | NA        |
 | 12  | 30  | 35  | 0C1E23 | \-90 | 12,30,35    |       10 | <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #0C1E23 !important;text-align: c;">\#0C1E23</span> |          60 | NA        |
 
-``` r
-
-pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
-```
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
-
-``` r
-#hashes <- bss_colors$hashed_hex
-bss_colors <- bss_colors[order(bss_colors$col_pal),]
-
-swatch(bss_colors$hashed_hex)
-```
-
-<img src="man/figures/README-unnamed-chunk-2-2.png" width="100%" />
+Filtering the table by e.g. palettes (col\_pal)
 
 ``` r
 choice <- bss_colors %>% filter(col_pal == 7)
 swatch(choice$hashed_hex)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+### basic colors
+
+The following diagram contains all basic bss colors. They are stored in
+a vector with the corresponding names. Unlike to the bss\_colors table,
+these colors can therfore be called in functions by their names. When
+the package is loaded the vector can be called with the `basic_colors`
+command. However, the basic bss colors can also be found in the bigger
+above showed bss\_colors table, as it includes all colors.
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
-swatch(basic_colors)
+basic_colors
+#>     weiss   schwarz hellgrau1      grau      blau      grün       rot      gelb 
+#> "#FFFFFF" "#000000" "#F2F2F2" "#BFBFBF" "#155F90" "#ABE441" "#E5233D" "#EEEC22" 
+#>  hellblau hellgrau2 
+#> "#6BC5FF" "#EDF6F9"
 ```
-
-<img src="man/figures/README-unnamed-chunk-2-4.png" width="100%" />
 
 ## function: bss\_cols() - examples
 
 The bss\_cols function allows you to get and reference hex colors in a
-robust and flexible way.
+robust and flexible way for the basic\_colors. As you can see in the
+example below, I am calling the colours by their names. Hence, this
+function does not work with the hex codes of the big, above showed
+bss\_colors table.
 
 ``` r
+# to get the basic colors
+bss_cols()
+#>     weiss   schwarz hellgrau1      grau      blau      grün       rot      gelb 
+#> "#FFFFFF" "#000000" "#F2F2F2" "#BFBFBF" "#155F90" "#ABE441" "#E5233D" "#EEEC22" 
+#>  hellblau hellgrau2 
+#> "#6BC5FF" "#EDF6F9"
 # to get the information of a color
 bss_cols("rot")
 #>       rot 
@@ -186,19 +172,16 @@ bss_cols("rot")
 # or to just use a color in a plot
 ggplot(mtcars, aes(hp, mpg)) +
   geom_point(color = bss_cols("rot"),
-             size = 2, alpha = .8)
+             size = 2, alpha = .8)+ 
+  theme_hc()
 ```
 
 <img src="man/figures/README-bss_cols-1.png" width="100%" />
 
 ## function: bss\_pal() - examples
 
-With a subset of palettes of the original colors this function allows to
-interpolate the palette colors for a certain number of levels, making it
-possible to create shades between the original colors using
-colorRampPalette from grDevices. Further, it gets a palette by name from
-the list (“main” by default) and has a boolean condition determining
-whether to reverse the order or not.
+With the command `bss_palettes` you can see all the coded palettes
+stored in a list.
 
 ``` r
 # the following subset color palettes are available 
@@ -232,48 +215,81 @@ bss_palettes
 #> $main_only_color
 #>            [,1]      [,2]      [,3]      [,4]      [,5]     
 #> hashed_hex "#155F90" "#ABE441" "#E5233D" "#EEEC22" "#6BC5FF"
-
-# interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:
-bss_pal("main_only_color")(5)
-#> [1] "#155F90" "#ABE441" "#E5233D" "#EEEC22" "#6BC5FF"
-pie3D(rep(5, 6),explode=0, theta=1.2, col=bss_pal("monochrom_yellow")(6), main="bss_pal('monochrom_yellow')(6)")
 ```
 
-<img src="man/figures/README-bss_pal-1.png" width="100%" />
+The function `bss_pal()` allows to interpolate the palette colors for a
+certain number of levels, making it possible to create shades between
+the original colors using colorRampPalette from grDevices. This command
+can be used to extend to numbers of colors in a palette, however the hex
+codes of some color shades can then deviate from the above bss\_colors
+table. Therefore, I recommend to use the coded palettes mentioned above,
+if possible.
+
+``` r
+# interpolate the "main_only_color" palette (which only includes five colors) to a length of 20:
+bss_pal("main_only_color")(20)
+#>  [1] "#155F90" "#347B7F" "#54976E" "#73B35E" "#93CF4D" "#AED940" "#BAB13F"
+#>  [8] "#C6883F" "#D25F3E" "#DE373D" "#E5383A" "#E76234" "#E98C2E" "#EBB729"
+#> [15] "#EDE123" "#D9E544" "#BDDD73" "#A2D5A1" "#86CDD0" "#6BC5FF"
+```
+
+The function `bss_pal` gets a palette by name from the list above
+(“main\_only\_color” by default) and has a boolean condition (`rev
+=T/F`) determining whether to reverse the order of colors or not.
+
+``` r
+# Example of pie chart extending monochrom_yellow palettes to 50 shades.
+pie3D(rep(5, 50),explode=0, theta=1.2, col=bss_pal(rev = T,"monochrom_yellow")(50),main="bss_pal('monochrom_yellow')(50)")
+```
+
+<img src="man/figures/README-bss_pal plot-1.png" width="100%" />
 
 ## function: scale\_color\_bss() - example
 
-Custom color scale functions for ggplot2.
+`scale_color_bss()` is a custom color scale functions for ggplot2 plots.
+The same could also be achived with the function `scale_colour_manual`
+of the ggplot2 package. However, the usage of the bsscol palettes makes
+this process more tidy and efficient. In the function two boolean
+parameters `discrete = T/F, reverse = T/F` can be choosen.
 
 ``` r
-# Color by discrete variable using default palette
+# Color by discrete variable using default palette main_only_color
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
   geom_point(size = 2) +
-  scale_color_bss()
+  scale_color_bss() +
+  theme_hc()
 ```
 
 <img src="man/figures/README-scale_color_bss-1.png" width="100%" />
 
 ``` r
 
-# Color by numeric variable with cool palette
+# Color by numeric variable with monochrom_red palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
   geom_point(size = 2, alpha = .6) +
-  scale_color_bss(discrete = FALSE, palette = "monochrom_red")
+  scale_color_bss(discrete = FALSE, palette = "monochrom_red")+
+  theme_hc()
 ```
 
 <img src="man/figures/README-scale_color_bss-2.png" width="100%" />
 
 ## function: scale\_fill\_bss() - example
 
-Custom fill scale functions for ggplot2.
+`scale_fill_bss()` is a custom fill scale functions for ggplot2 plots.
+The same could also be achived with the function `scale_fill_manual` of
+the ggplot2 package. However, the usage of the bsscol palettes makes
+this process more tidy and efficient. The shades of colors is
+automattically extended when using more colors than a palettes has to
+offer.In the function to boolean parameters `discrete = T/F, reverse =
+T/F` can be choosen.
 
 ``` r
-# Fill by discrete variable with different palette + remove legend (guide)
+# Fill by discrete variable with the main palette + remove legend (guide)
 ggplot(mpg, aes(model          , fill = model         )) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_bss(palette = "main", guide = "none")
+  scale_fill_bss(palette = "main", guide = "none")+
+  theme_hc()
 ```
 
 <img src="man/figures/README-scale_fill_bss-1.png" width="100%" />
