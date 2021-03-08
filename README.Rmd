@@ -62,11 +62,11 @@ library(kableExtra)
 ## the colors
 
 ```{r}
-# the colors, RGB and hex codes 
-bss_colors <- bss_colors %>% arrange(col_pal) %>% select(-colour)
+#the colors, RGB and hex codes
+bss_colors <- bss_colors %>% dplyr::arrange(col_pal) %>% dplyr::select(-colour)
 bss_dt <- bss_colors
 bss_dt$hashed_hex = cell_spec(
-  bss_dt$hashed_hex, color = "white", align = "c", #angle = 2, 
+  bss_dt$hashed_hex, color = "white", align = "c", #angle = 2,
   background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
 
 kbl(bss_dt, escape = F) %>%
@@ -74,10 +74,10 @@ kbl(bss_dt, escape = F) %>%
 
 pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
 #hashes <- bss_colors$hashed_hex
-bss_colors <- bss_colors[order(bss_colors$col_pal),] 
+bss_colors <- bss_colors[order(bss_colors$col_pal),]
 
 swatch(bss_colors$hashed_hex)
-choice <- bss_colors %>% filter(col_pal == 7) 
+choice <- bss_colors %>% filter(col_pal == 7)
 swatch(choice$hashed_hex)
 swatch(basic_colors)
 ```

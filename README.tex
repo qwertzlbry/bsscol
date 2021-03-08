@@ -4,8 +4,8 @@
 %
 \documentclass[
 ]{article}
-\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
+\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
@@ -111,9 +111,6 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifluatex
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 
 \author{}
 \date{\vspace{-2.5em}}
@@ -134,8 +131,8 @@ You can install the released version of bsscol from
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(devtools) }\CommentTok{\# install devtool first if not installed}
-\FunctionTok{install\_github}\NormalTok{(}\StringTok{"qwertzlbry/bsscol"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(devtools) }\CommentTok{\# install devtool first if not installed}
+\KeywordTok{install\_github}\NormalTok{(}\StringTok{"qwertzlbry/bsscol"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -143,7 +140,7 @@ With a future CRAN approval the package could be installed with:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"bsscol"}\NormalTok{) }\CommentTok{\# currently the installation works only over github}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bsscol"}\NormalTok{) }\CommentTok{\# currently the installation works only over github}
 \end{Highlighting}
 \end{Shaded}
 
@@ -151,11 +148,11 @@ In order to run the following examples you'll also need:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"plotrix"}\NormalTok{)}
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"hues"}\NormalTok{)}
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"DT"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"plotrix"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"hues"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"DT"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -164,11 +161,14 @@ In order to run the following examples you'll also need:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(bsscol)}
-\FunctionTok{library}\NormalTok{(ggplot2)}
-\FunctionTok{library}\NormalTok{(plotrix)}
-\FunctionTok{library}\NormalTok{(hues)}
-\FunctionTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(bsscol)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\#\textgreater{} Warning: package \textquotesingle{}ggplot2\textquotesingle{} was built under R version 3.6.3}
+\KeywordTok{library}\NormalTok{(plotrix)}
+\CommentTok{\#\textgreater{} Warning: package \textquotesingle{}plotrix\textquotesingle{} was built under R version 3.6.3}
+\KeywordTok{library}\NormalTok{(hues)}
+\CommentTok{\#\textgreater{} Warning: package \textquotesingle{}hues\textquotesingle{} was built under R version 3.6.3}
+\KeywordTok{library}\NormalTok{(dplyr)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Attaching package: \textquotesingle{}dplyr\textquotesingle{}}
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:stats\textquotesingle{}:}
@@ -177,12 +177,14 @@ In order to run the following examples you'll also need:
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:base\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     intersect, setdiff, setequal, union}
-\FunctionTok{library}\NormalTok{(kableExtra)}
+\KeywordTok{library}\NormalTok{(kableExtra)}
+\CommentTok{\#\textgreater{} Warning: package \textquotesingle{}kableExtra\textquotesingle{} was built under R version 3.6.3}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Attaching package: \textquotesingle{}kableExtra\textquotesingle{}}
 \CommentTok{\#\textgreater{} The following object is masked from \textquotesingle{}package:dplyr\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     group\_rows}
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{knitr.table.format =} \StringTok{"pdf"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -191,15 +193,15 @@ In order to run the following examples you'll also need:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# the colors, RGB and hex codes }
-\NormalTok{bss\_colors }\OtherTok{\textless{}{-}}\NormalTok{ bss\_colors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(col\_pal) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{colour)}
-\NormalTok{bss\_dt }\OtherTok{\textless{}{-}}\NormalTok{ bss\_colors}
-\NormalTok{bss\_dt}\SpecialCharTok{$}\NormalTok{hashed\_hex }\OtherTok{=} \FunctionTok{cell\_spec}\NormalTok{(}
-\NormalTok{  bss\_dt}\SpecialCharTok{$}\NormalTok{hashed\_hex, }\AttributeTok{color =} \StringTok{"white"}\NormalTok{, }\AttributeTok{align =} \StringTok{"c"}\NormalTok{, }\CommentTok{\#angle = 2, }
-  \AttributeTok{background =} \FunctionTok{factor}\NormalTok{(bss\_dt}\SpecialCharTok{$}\NormalTok{excel\_form,bss\_dt}\SpecialCharTok{$}\NormalTok{excel\_form, bss\_dt}\SpecialCharTok{$}\NormalTok{hashed\_hex))}
+\CommentTok{\#the colors, RGB and hex codes}
+\NormalTok{bss\_colors \textless{}{-}}\StringTok{ }\NormalTok{bss\_colors }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{arrange}\NormalTok{(col\_pal) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}\OperatorTok{{-}}\NormalTok{colour)}
+\NormalTok{bss\_dt \textless{}{-}}\StringTok{ }\NormalTok{bss\_colors}
+\NormalTok{bss\_dt}\OperatorTok{$}\NormalTok{hashed\_hex =}\StringTok{ }\KeywordTok{cell\_spec}\NormalTok{(}
+\NormalTok{  bss\_dt}\OperatorTok{$}\NormalTok{hashed\_hex, }\DataTypeTok{color =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{align =} \StringTok{"c"}\NormalTok{, }\CommentTok{\#angle = 2,}
+  \DataTypeTok{background =} \KeywordTok{factor}\NormalTok{(bss\_dt}\OperatorTok{$}\NormalTok{excel\_form,bss\_dt}\OperatorTok{$}\NormalTok{excel\_form, bss\_dt}\OperatorTok{$}\NormalTok{hashed\_hex))}
 
-\FunctionTok{kbl}\NormalTok{(bss\_dt, }\AttributeTok{escape =}\NormalTok{ F) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_paper}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\AttributeTok{full\_width =}\NormalTok{ F)}
+\KeywordTok{kbl}\NormalTok{(bss\_dt, }\DataTypeTok{escape =}\NormalTok{ F) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{kable\_paper}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full\_width =}\NormalTok{ F)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -335,7 +337,7 @@ R & G & B & hex & Typ & Full & col_pal & hashed_hex & excel_form & name\\
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\FunctionTok{pie3D}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{10}\NormalTok{),}\AttributeTok{explode=}\DecValTok{0}\NormalTok{, }\AttributeTok{theta=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{col=}\NormalTok{basic\_colors, }\AttributeTok{main=}\StringTok{"bss\_colors"}\NormalTok{)}
+\KeywordTok{pie3D}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{10}\NormalTok{),}\DataTypeTok{explode=}\DecValTok{0}\NormalTok{, }\DataTypeTok{theta=}\FloatTok{1.2}\NormalTok{, }\DataTypeTok{col=}\NormalTok{basic\_colors, }\DataTypeTok{main=}\StringTok{"bss\_colors"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -344,9 +346,9 @@ R & G & B & hex & Typ & Full & col_pal & hashed_hex & excel_form & name\\
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#hashes \textless{}{-} bss\_colors$hashed\_hex}
-\NormalTok{bss\_colors }\OtherTok{\textless{}{-}}\NormalTok{ bss\_colors[}\FunctionTok{order}\NormalTok{(bss\_colors}\SpecialCharTok{$}\NormalTok{col\_pal),] }
+\NormalTok{bss\_colors \textless{}{-}}\StringTok{ }\NormalTok{bss\_colors[}\KeywordTok{order}\NormalTok{(bss\_colors}\OperatorTok{$}\NormalTok{col\_pal),]}
 
-\FunctionTok{swatch}\NormalTok{(bss\_colors}\SpecialCharTok{$}\NormalTok{hashed\_hex)}
+\KeywordTok{swatch}\NormalTok{(bss\_colors}\OperatorTok{$}\NormalTok{hashed\_hex)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -354,8 +356,8 @@ R & G & B & hex & Typ & Full & col_pal & hashed_hex & excel_form & name\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{choice }\OtherTok{\textless{}{-}}\NormalTok{ bss\_colors }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(col\_pal }\SpecialCharTok{==} \DecValTok{7}\NormalTok{) }
-\FunctionTok{swatch}\NormalTok{(choice}\SpecialCharTok{$}\NormalTok{hashed\_hex)}
+\NormalTok{choice \textless{}{-}}\StringTok{ }\NormalTok{bss\_colors }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{filter}\NormalTok{(col\_pal }\OperatorTok{==}\StringTok{ }\DecValTok{7}\NormalTok{)}
+\KeywordTok{swatch}\NormalTok{(choice}\OperatorTok{$}\NormalTok{hashed\_hex)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -363,7 +365,7 @@ R & G & B & hex & Typ & Full & col_pal & hashed_hex & excel_form & name\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{swatch}\NormalTok{(basic\_colors)}
+\KeywordTok{swatch}\NormalTok{(basic\_colors)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -379,13 +381,13 @@ robust and flexible way.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# to get the information of a color}
-\FunctionTok{bss\_cols}\NormalTok{(}\StringTok{"rot"}\NormalTok{)}
+\KeywordTok{bss\_cols}\NormalTok{(}\StringTok{"rot"}\NormalTok{)}
 \CommentTok{\#\textgreater{}       rot }
 \CommentTok{\#\textgreater{} "\#E5233D"}
 \CommentTok{\# or to just use a color in a plot}
-\FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(hp, mpg)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \FunctionTok{bss\_cols}\NormalTok{(}\StringTok{"rot"}\NormalTok{),}
-             \AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{8}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(hp, mpg)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_point}\NormalTok{(}\DataTypeTok{color =} \KeywordTok{bss\_cols}\NormalTok{(}\StringTok{"rot"}\NormalTok{),}
+             \DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -437,9 +439,9 @@ whether to reverse the order or not.
 \CommentTok{\#\textgreater{} hashed\_hex "\#155F90" "\#ABE441" "\#E5233D" "\#EEEC22" "\#6BC5FF"}
 
 \CommentTok{\# interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:}
-\FunctionTok{bss\_pal}\NormalTok{(}\StringTok{"main\_only\_color"}\NormalTok{)(}\DecValTok{5}\NormalTok{)}
+\KeywordTok{bss\_pal}\NormalTok{(}\StringTok{"main\_only\_color"}\NormalTok{)(}\DecValTok{5}\NormalTok{)}
 \CommentTok{\#\textgreater{} [1] "\#155F90" "\#ABE441" "\#E5233D" "\#EEEC22" "\#6BC5FF"}
-\FunctionTok{pie3D}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{),}\AttributeTok{explode=}\DecValTok{0}\NormalTok{, }\AttributeTok{theta=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{col=}\FunctionTok{bss\_pal}\NormalTok{(}\StringTok{"monochrom\_yellow"}\NormalTok{)(}\DecValTok{6}\NormalTok{), }\AttributeTok{main=}\StringTok{"bss\_pal(\textquotesingle{}monochrom\_yellow\textquotesingle{})(6)"}\NormalTok{)}
+\KeywordTok{pie3D}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{),}\DataTypeTok{explode=}\DecValTok{0}\NormalTok{, }\DataTypeTok{theta=}\FloatTok{1.2}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{bss\_pal}\NormalTok{(}\StringTok{"monochrom\_yellow"}\NormalTok{)(}\DecValTok{6}\NormalTok{), }\DataTypeTok{main=}\StringTok{"bss\_pal(\textquotesingle{}monochrom\_yellow\textquotesingle{})(6)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -454,9 +456,9 @@ Custom color scale functions for ggplot2.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Color by discrete variable using default palette}
-\FunctionTok{ggplot}\NormalTok{(iris, }\FunctionTok{aes}\NormalTok{(Sepal.Width, Sepal.Length, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_color\_bss}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(Sepal.Width, Sepal.Length, }\DataTypeTok{color =}\NormalTok{ Species)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_color\_bss}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -466,9 +468,9 @@ Custom color scale functions for ggplot2.
 \begin{Highlighting}[]
 
 \CommentTok{\# Color by numeric variable with cool palette}
-\FunctionTok{ggplot}\NormalTok{(iris, }\FunctionTok{aes}\NormalTok{(Sepal.Width, Sepal.Length, }\AttributeTok{color =}\NormalTok{ Sepal.Length)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_color\_bss}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{palette =} \StringTok{"monochrom\_red"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(Sepal.Width, Sepal.Length, }\DataTypeTok{color =}\NormalTok{ Sepal.Length)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_color\_bss}\NormalTok{(}\DataTypeTok{discrete =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{palette =} \StringTok{"monochrom\_red"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -483,10 +485,10 @@ Custom fill scale functions for ggplot2.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Fill by discrete variable with different palette + remove legend (guide)}
-\FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(model          , }\AttributeTok{fill =}\NormalTok{ model         )) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_bss}\NormalTok{(}\AttributeTok{palette =} \StringTok{"main"}\NormalTok{, }\AttributeTok{guide =} \StringTok{"none"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(model          , }\DataTypeTok{fill =}\NormalTok{ model         )) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_bar}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element\_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{45}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_fill\_bss}\NormalTok{(}\DataTypeTok{palette =} \StringTok{"main"}\NormalTok{, }\DataTypeTok{guide =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
