@@ -70,8 +70,8 @@ bss_dt$hashed_hex = cell_spec(
   background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
 
     kbl(bss_dt, escape = F, format = "html") %>%
-      kable_paper("striped", full_width = F) 
-          # save_kable("inst/test.png")
+      kable_paper("striped", full_width = F)  
+          #save_kable("inst/color_table.png")
 
 pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
 #hashes <- bss_colors$hashed_hex
