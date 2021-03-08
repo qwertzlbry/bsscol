@@ -21,20 +21,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-# bsscol
+# bsscol ReadMe
 
 <!-- badges: start -->
 <!-- badges: end -->
 
 bsscol allows for a simple integration of the BSS base colors into ggplot2 and alike.
 
-## installation
+### installation
 
 You can install the released version of bsscol from [Github](https://github.com/qwertzlbry/bsscol) with:
 ``` r
 library(devtools) # install devtool first if not installed
 install_github("qwertzlbry/bsscol")
 ```
+Or just copy the package folder from:
+"$G:\BSS\Administration\05_BSS_Vorlagen\Farben_R_Stata\bsscol$"
+into your local R library and load it.
+
 With a future CRAN approval the package could be installed with:
 ``` r
 install.packages("bsscol") # currently the installation works only over github
@@ -48,20 +52,22 @@ install.packages("hues")
 install.packages("DT")
 
 ```
-## load packages
+### load packages
 
-```{r example}
+```{r example, warning=FALSE, results='hide', echo=TRUE, quietly=T}
 library(bsscol)
 library(ggplot2)
 library(plotrix)
 library(hues)
-library(dplyr)
-library(kableExtra)
+library(dplyr, warn.conflicts=F, quietly=T)
+library(kableExtra, warn.conflicts=F, quietly=T)
 ```
 
 ## the colors
 
-```{r}
+### all colors
+The following table contains all the BSS colors. When the package is loaded this table can be called with the  `bss_colors` command.
+```{r,echo=FALSE,warning=FALSE}
 #the colors, RGB and hex codes
 bss_colors <- bss_colors %>% dplyr::arrange(col_pal) %>% dplyr::select(-colour)
 bss_dt <- bss_colors
@@ -69,23 +75,32 @@ bss_dt$hashed_hex = cell_spec(
   bss_dt$hashed_hex, color = "white", align = "c", #angle = 2,
   background = factor(bss_dt$excel_form,bss_dt$excel_form, bss_dt$hashed_hex))
 
-    kbl(bss_dt, escape = F, format = "html") %>%
+    kbl(bss_dt, escape = F, format = "markdown") %>%
       kable_paper("striped", full_width = F)  
           #save_kable("inst/color_table.png")
-
-pie3D(rep(2, 10),explode=0, theta=1.2, col=basic_colors, main="bss_colors")
-#hashes <- bss_colors$hashed_hex
-bss_colors <- bss_colors[order(bss_colors$col_pal),]
-
-swatch(bss_colors$hashed_hex)
+```
+Filtering the table by e.g. palettes (col_pal)
+```{r}
 choice <- bss_colors %>% filter(col_pal == 7)
 swatch(choice$hashed_hex)
-swatch(basic_colors)
 ```
 
+### basic colors
+The following diagram contains all  basic bss colors. They are stored in a vector with the corresponding names. Unlike to the bss_colors table, these colors can therfore be called in functions by their names. When the package is loaded the vector can be called with the  `basic_colors` command. However, the basic bss colors can also be found in the bigger above showed bss_colors table, as it includes all colors.
+
+```{r,echo=FALSE,warning=FALSE}
+swatch(basic_colors)
+```
+```{r}
+basic_colors
+```
+
+
 ## function: bss_cols() - examples
-The bss_cols function allows you to get and reference hex colors in a robust and flexible way.
+The bss_cols function allows you to get and reference hex colors in a robust and flexible way for the basic_colors. As you can see in the example below, I am calling the colours by their names. Hence, this function does not work with the hex codes of the big, above showed bss_colors table.
 ```{r bss_cols}
+# to get the basic colors
+bss_cols()
 # to get the information of a color
 bss_cols("rot")
 # or to just use a color in a plot
@@ -95,40 +110,45 @@ ggplot(mtcars, aes(hp, mpg)) +
 ```
 
 ## function: bss_pal() - examples
-With a subset of palettes of the original colors this function allows to
-interpolate the palette colors for a certain number of levels, making it
-possible to create shades between the original colors using colorRampPalette from grDevices.
-Further, it gets a palette by name from the list ("main" by default) and has 
-a boolean condition determining whether to reverse the order or not.
-```{r bss_pal}
+With the command `bss_palettes` you can see all the coded palettes stored in a list.
+
+```{r}
 # the following subset color palettes are available 
 bss_palettes
+```
+The function `bss_pal()` allows to interpolate the palette colors for a certain number of levels, making it
+possible to create shades between the original colors using colorRampPalette from grDevices. This command can be used to extend to numbers of colors in a palette, however the hex codes of some color shades can then deviate from the above bss_colors table. Therefore, I recommend to use the coded palettes mentioned above, if possible.
+```{r bss_pal}
+# interpolate the "main_only_color" palette (which only includes five colors) to a length of 20:
+bss_pal("main_only_color")(20)
+```
+The function `bss_pal` gets a palette by name from the list above ("main_only_color" by default) and has 
+a boolean condition (`rev =T/F`) determining whether to reverse the order of colors or not.
 
-# interpolate the "rgb" palette (which only includes three colors, red, green and blue) to a length of 9:
-bss_pal("main_only_color")(5)
-pie3D(rep(5, 6),explode=0, theta=1.2, col=bss_pal("monochrom_yellow")(6), main="bss_pal('monochrom_yellow')(6)")
+```{r bss_pal plot}
+# Example of pie chart extending monochrom_yellow palettes to 50 shades.
+pie3D(rep(5, 50),explode=0, theta=1.2, col=bss_pal(rev = T,"monochrom_yellow")(50),main="bss_pal('monochrom_yellow')(50)")
 ```
 
 
 ## function: scale_color_bss() - example
-Custom color scale functions for ggplot2.
+`scale_color_bss()` is a custom color scale functions for ggplot2 plots. The same could also be achived with the function `scale_colour_manual` of the ggplot2 package. However, the usage of the bsscol palettes makes this process more tidy and efficient. In the function two boolean parameters `discrete = T/F, reverse = T/F` can be choosen.
 ```{r scale_color_bss}
-# Color by discrete variable using default palette
+# Color by discrete variable using default palette main_only_color
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
   geom_point(size = 2) +
   scale_color_bss()
 
-# Color by numeric variable with cool palette
+# Color by numeric variable with monochrom_red palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
   geom_point(size = 2, alpha = .6) +
   scale_color_bss(discrete = FALSE, palette = "monochrom_red")
 ```
 
-
 ## function: scale_fill_bss() - example
-Custom fill scale functions for ggplot2.
+`scale_fill_bss()` is a custom fill scale functions for ggplot2 plots. The same could also be achived with the function `scale_fill_manual` of the ggplot2 package. However, the usage of the bsscol palettes makes this process more tidy and efficient. The shades of colors is automattically extended when using more colors than a palettes has to offer.In the function to boolean parameters `discrete = T/F, reverse = T/F` can be choosen.
 ```{r scale_fill_bss}
-# Fill by discrete variable with different palette + remove legend (guide)
+# Fill by discrete variable with the main palette + remove legend (guide)
 ggplot(mpg, aes(model          , fill = model         )) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
