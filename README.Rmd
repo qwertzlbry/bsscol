@@ -1,12 +1,6 @@
 ---
 output:
   github_document: default
-  html_document: default
----
-````
----
-output:
-  github_document: default
   pdf_document: default
   html_document:
     df_print: paged
@@ -139,7 +133,7 @@ ggplot(mpg, aes(model          , fill = model         )) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_bss(palette = "main", guide = "none")
 ```
-````
+
 
 
 
