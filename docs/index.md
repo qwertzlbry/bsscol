@@ -127,7 +127,7 @@ swatch(choice$hashed_hex)
 
 The following diagram contains all basic bss colors. They are stored in
 a vector with the corresponding names. Unlike to the bss\_colors table,
-these colors can therfore be called in functions by their names. When
+these colors can therefore be called in functions by their names. When
 the package is loaded the vector can be called with the `basic_colors`
 command. However, the basic bss colors can also be found in the bigger
 above showed bss\_colors table, as it includes all colors.
@@ -146,7 +146,7 @@ basic_colors
 
 The bss\_cols function allows you to get and reference hex colors in a
 robust and flexible way for the basic\_colors. As you can see in the
-example below, I am calling the colours by their names. Hence, this
+example below, I am calling the colors by their names. Hence, this
 function does not work with the hex codes of the big, above showed
 bss\_colors table.
 
@@ -239,10 +239,10 @@ pie3D(rep(5, 50),explode=0, theta=1.2, col=bss_pal(rev = T,"monochrom_yellow")(5
 ## function: scale\_color\_bss() - example
 
 `scale_color_bss()` is a custom color scale functions for ggplot2 plots.
-The same could also be achived with the function `scale_colour_manual`
+The same could also be achieved with the function `scale_colour_manual`
 of the ggplot2 package. However, the usage of the bsscol palettes makes
 this process more tidy and efficient. In the function two boolean
-parameters `discrete = T/F, reverse = T/F` can be choosen.
+parameters `discrete = T/F, reverse = T/F` can be chosen.
 
 ``` r
 # Color by discrete variable using default palette main_only_color
@@ -268,10 +268,10 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 ## function: scale\_fill\_bss() - example
 
 `scale_fill_bss()` is a custom fill scale functions for ggplot2 plots.
-The same could also be achived with the function `scale_fill_manual` of
+The same could also be achieved with the function `scale_fill_manual` of
 the ggplot2 package. However, the usage of the bsscol palettes makes
 this process more tidy and efficient. The shades of colors is
-automattically extended when using more colors than a palettes has to
+automatically extended when using more colors than a palettes has to
 offer.In the function to boolean parameters `discrete = T/F, reverse =
 T/F` can be choosen.
 
@@ -285,34 +285,7 @@ ggplot(mpg, aes(model          , fill = model         )) +
 ```
 
 <img src="man/figures/README-scale_fill_bss-1.png" width="100%" />
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/qwertzlbry/bsscol/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Having trouble with Package? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.

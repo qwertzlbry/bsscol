@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "2089660888",
     "id" : "A65FC85A",
-    "lastKnownWriteTime" : 1615220908,
-    "last_content_update" : 1615220908779,
+    "lastKnownWriteTime" : 1615278967,
+    "last_content_update" : 1615278967118,
     "path" : "~/GitHub/bsscol/README.Rmd",
     "project_path" : "README.Rmd",
     "properties" : {
-        "cursorPosition" : "9,0",
-        "scrollLine" : "114"
+        "cursorPosition" : "130,37",
+        "scrollLine" : "121"
     },
     "read_only" : false,
     "read_only_alternatives" : [
