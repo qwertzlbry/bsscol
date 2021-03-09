@@ -270,9 +270,9 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 `scale_fill_bss()` is a custom fill scale functions for ggplot2 plots.
 The same could also be achieved with the function `scale_fill_manual` of
 the ggplot2 package. However, the usage of the bsscol palettes makes
-this process more tidy and efficient. The shades of colors is
-automatically extended when using more colors than a palettes has to
-offer.In the function to boolean parameters `discrete = T/F, reverse =
+this process more tidy and efficient. The shades of colors are
+automatically extended when using more colors than a standard palettes has to
+offer. In the function two boolean parameters `discrete = T/F, reverse =
 T/F` can be choosen.
 
 ``` r
