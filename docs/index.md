@@ -123,6 +123,168 @@ swatch(choice$hashed_hex)
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
+### basic colors
+
+The following diagram contains all basic bss colors. They are stored in
+a vector with the corresponding names. Unlike to the bss\_colors table,
+these colors can therfore be called in functions by their names. When
+the package is loaded the vector can be called with the `basic_colors`
+command. However, the basic bss colors can also be found in the bigger
+above showed bss\_colors table, as it includes all colors.
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+``` r
+basic_colors
+#>     weiss   schwarz hellgrau1      grau      blau      grün       rot      gelb 
+#> "#FFFFFF" "#000000" "#F2F2F2" "#BFBFBF" "#155F90" "#ABE441" "#E5233D" "#EEEC22" 
+#>  hellblau hellgrau2 
+#> "#6BC5FF" "#EDF6F9"
+```
+
+## function: bss\_cols() - examples
+
+The bss\_cols function allows you to get and reference hex colors in a
+robust and flexible way for the basic\_colors. As you can see in the
+example below, I am calling the colours by their names. Hence, this
+function does not work with the hex codes of the big, above showed
+bss\_colors table.
+
+``` r
+# to get the basic colors
+bss_cols()
+#>     weiss   schwarz hellgrau1      grau      blau      grün       rot      gelb 
+#> "#FFFFFF" "#000000" "#F2F2F2" "#BFBFBF" "#155F90" "#ABE441" "#E5233D" "#EEEC22" 
+#>  hellblau hellgrau2 
+#> "#6BC5FF" "#EDF6F9"
+# to get the information of a color
+bss_cols("rot")
+#>       rot 
+#> "#E5233D"
+# or to just use a color in a plot
+ggplot(mtcars, aes(hp, mpg)) +
+  geom_point(color = bss_cols("rot"),
+             size = 2, alpha = .8)+ 
+  theme_hc()
+```
+
+<img src="man/figures/README-bss_cols-1.png" width="100%" />
+
+## function: bss\_pal() - examples
+
+With the command `bss_palettes` you can see all the coded palettes
+stored in a list.
+
+``` r
+# the following subset color palettes are available 
+bss_palettes
+#> $monochrom_black1
+#>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
+#> hashed_hex "#FFFFFF" "#F2F2F2" "#D9D9D9" "#BFBFBF" "#A6A6A6" "#808080"
+#> 
+#> $monochrom_green
+#>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
+#> hashed_hex "#ABE441" "#EEFAD8" "#DDF4B3" "#CCEE8C" "#86BF1C" "#5A8112"
+#> 
+#> $monochrom_red
+#>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
+#> hashed_hex "#E5233D" "#FAD1D7" "#F4A6AF" "#EF7A89" "#B01528" "#760E1B"
+#> 
+#> $monochrom_yellow
+#>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
+#> hashed_hex "#EEEC22" "#FCFCD1" "#F9F9A6" "#F4F479" "#BDBD0F" "#7E7E0A"
+#> 
+#> $monochrom_blue
+#>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
+#> hashed_hex "#6BC5FF" "#E1F3FF" "#C4E8FF" "#A6DBFF" "#0F9FFF" "#006CB5"
+#> 
+#> $main
+#>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
+#> hashed_hex "#FFFFFF" "#000000" "#F2F2F2" "#BFBFBF" "#155F90" "#ABE441"
+#>            [,7]      [,8]      [,9]      [,10]    
+#> hashed_hex "#E5233D" "#EEEC22" "#6BC5FF" "#EDF6F9"
+#> 
+#> $main_only_color
+#>            [,1]      [,2]      [,3]      [,4]      [,5]     
+#> hashed_hex "#155F90" "#ABE441" "#E5233D" "#EEEC22" "#6BC5FF"
+```
+
+The function `bss_pal()` allows to interpolate the palette colors for a
+certain number of levels, making it possible to create shades between
+the original colors using colorRampPalette from grDevices. This command
+can be used to extend to numbers of colors in a palette, however the hex
+codes of some color shades can then deviate from the above bss\_colors
+table. Therefore, I recommend to use the coded palettes mentioned above,
+if possible.
+
+``` r
+# interpolate the "main_only_color" palette (which only includes five colors) to a length of 20:
+bss_pal("main_only_color")(20)
+#>  [1] "#155F90" "#347B7F" "#54976E" "#73B35E" "#93CF4D" "#AED940" "#BAB13F"
+#>  [8] "#C6883F" "#D25F3E" "#DE373D" "#E5383A" "#E76234" "#E98C2E" "#EBB729"
+#> [15] "#EDE123" "#D9E544" "#BDDD73" "#A2D5A1" "#86CDD0" "#6BC5FF"
+```
+
+The function `bss_pal` gets a palette by name from the list above
+(“main\_only\_color” by default) and has a boolean condition (`rev
+=T/F`) determining whether to reverse the order of colors or not.
+
+``` r
+# Example of pie chart extending monochrom_yellow palettes to 50 shades.
+pie3D(rep(5, 50),explode=0, theta=1.2, col=bss_pal(rev = T,"monochrom_yellow")(50),main="bss_pal('monochrom_yellow')(50)")
+```
+
+<img src="man/figures/README-bss_pal plot-1.png" width="100%" />
+
+## function: scale\_color\_bss() - example
+
+`scale_color_bss()` is a custom color scale functions for ggplot2 plots.
+The same could also be achived with the function `scale_colour_manual`
+of the ggplot2 package. However, the usage of the bsscol palettes makes
+this process more tidy and efficient. In the function two boolean
+parameters `discrete = T/F, reverse = T/F` can be choosen.
+
+``` r
+# Color by discrete variable using default palette main_only_color
+ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
+  geom_point(size = 2) +
+  scale_color_bss() +
+  theme_hc()
+```
+
+<img src="man/figures/README-scale_color_bss-1.png" width="100%" />
+
+``` r
+
+# Color by numeric variable with monochrom_red palette
+ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
+  geom_point(size = 2, alpha = .6) +
+  scale_color_bss(discrete = FALSE, palette = "monochrom_red")+
+  theme_hc()
+```
+
+<img src="man/figures/README-scale_color_bss-2.png" width="100%" />
+
+## function: scale\_fill\_bss() - example
+
+`scale_fill_bss()` is a custom fill scale functions for ggplot2 plots.
+The same could also be achived with the function `scale_fill_manual` of
+the ggplot2 package. However, the usage of the bsscol palettes makes
+this process more tidy and efficient. The shades of colors is
+automattically extended when using more colors than a palettes has to
+offer.In the function to boolean parameters `discrete = T/F, reverse =
+T/F` can be choosen.
+
+``` r
+# Fill by discrete variable with the main palette + remove legend (guide)
+ggplot(mpg, aes(model          , fill = model         )) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_bss(palette = "main", guide = "none")+
+  theme_hc()
+```
+
+<img src="man/figures/README-scale_fill_bss-1.png" width="100%" />
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
