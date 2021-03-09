@@ -121,7 +121,7 @@ choice <- bss_colors %>% filter(col_pal == 7)
 swatch(choice$hashed_hex)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.PNG" width="100%" />
 
 ### basic colors
 
