@@ -1,9 +1,17 @@
-## Welcome to GitHub Pages
+# bsscol ReadMe
 
-You can use the [editor on GitHub](https://github.com/qwertzlbry/bsscol/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+bsscol allows for a simple integration of the BSS base colors into
+ggplot2 and alike.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## installation and loading
 
+You can install the released version of bsscol from
+[Github](https://github.com/qwertzlbry/bsscol) with:
+
+``` r
+library(devtools) # install devtool first if not installed
+install_github("qwertzlbry/bsscol")
+```
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
