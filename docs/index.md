@@ -130,7 +130,7 @@ a vector with the corresponding names. Unlike to the bss\_colors table,
 these colors can therefore be called in functions by their names. When
 the package is loaded the vector can be called with the `basic_colors`
 command. However, the basic bss colors can also be found in the bigger
-above showed bss\_colors table, as it includes all colors.
+above shown bss\_colors table, as it includes all colors.
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
@@ -273,7 +273,7 @@ the ggplot2 package. However, the usage of the bsscol palettes makes
 this process more tidy and efficient. The shades of colors are
 automatically extended when using more colors than a standard palettes has to
 offer. In the function two boolean parameters `discrete = T/F, reverse =
-T/F` can be choosen.
+T/F` can be chosen.
 
 ``` r
 # Fill by discrete variable with the main palette + remove legend (guide)

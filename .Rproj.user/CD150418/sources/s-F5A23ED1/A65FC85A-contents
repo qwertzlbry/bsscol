@@ -87,7 +87,7 @@ swatch(choice$hashed_hex)
 ```
 
 ### basic colors
-The following diagram contains all  basic bss colors. They are stored in a vector with the corresponding names. Unlike to the bss_colors table, these colors can therefore be called in functions by their names. When the package is loaded the vector can be called with the  `basic_colors` command. However, the basic bss colors can also be found in the bigger above showed bss_colors table, as it includes all colors.
+The following diagram contains all  basic bss colors. They are stored in a vector with the corresponding names. Unlike to the bss_colors table, these colors can therefore be called in functions by their names. When the package is loaded the vector can be called with the  `basic_colors` command. However, the basic bss colors can also be found in the bigger above shown bss_colors table, as it includes all colors.
 
 ```{r,echo=FALSE,warning=FALSE}
 swatch(basic_colors)
