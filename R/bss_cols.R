@@ -5,7 +5,7 @@
 
 bss_colors <- readRDS("data/Farbspektrum.rds")
 basic_colors<- c(
-  `weiss` = "#FFFFFF" ,
+`weiss` = "#FFFFFF" ,
 `schwarz`  ="#000000" ,
 `hellgrau1`="#F2F2F2" ,
 `grau` ="#BFBFBF" ,
