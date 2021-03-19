@@ -34,5 +34,5 @@ bss_pal <- function(palette = "main_only_color", reverse = FALSE, ...) {
 
   if (reverse) pal <- rev(pal)
 
-  return(colorRampPalette(pal, ...)
+  colorRampPalette(pal, ...)
 }
