@@ -4041,23 +4041,47 @@ stored in a list.
 bss_palettes
 #> $monochrome_black1
 #>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
-#> hashed_hex "#FFFFFF" "#F2F2F2" "#D9D9D9" "#BFBFBF" "#A6A6A6" "#808080"
+#> hashed_hex "#808080" "#A6A6A6" "#BFBFBF" "#D9D9D9" "#F2F2F2" "#FFFFFF"
+#> 
+#> $black_yellow
+#>  [1] "#808080" "#A6A6A6" "#BFBFBF" "#D9D9D9" "#F2F2F2" "#FFFFFF" "#FCFCD1"
+#>  [8] "#F9F9A6" "#F4F479" "#EEEC22" "#BDBD0F" "#7E7E0A"
 #> 
 #> $monochrome_green
 #>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
-#> hashed_hex "#ABE441" "#EEFAD8" "#DDF4B3" "#CCEE8C" "#86BF1C" "#5A8112"
+#> hashed_hex "#5A8112" "#86BF1C" "#ABE441" "#CCEE8C" "#DDF4B3" "#EEFAD8"
 #> 
 #> $monochrome_red
 #>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
-#> hashed_hex "#E5233D" "#FAD1D7" "#F4A6AF" "#EF7A89" "#B01528" "#760E1B"
+#> hashed_hex "#760E1B" "#B01528" "#E5233D" "#EF7A89" "#F4A6AF" "#FAD1D7"
+#> 
+#> $red_green
+#>  [1] "#760E1B" "#B01528" "#E5233D" "#EF7A89" "#F4A6AF" "#FAD1D7" "#EEFAD8"
+#>  [8] "#DDF4B3" "#CCEE8C" "#ABE441" "#86BF1C" "#5A8112"
+#> 
+#> $red_yellow
+#>  [1] "#760E1B" "#B01528" "#E5233D" "#EF7A89" "#F4A6AF" "#FAD1D7" "#FCFCD1"
+#>  [8] "#F9F9A6" "#F4F479" "#EEEC22" "#BDBD0F" "#7E7E0A"
 #> 
 #> $monochrome_yellow
 #>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
-#> hashed_hex "#EEEC22" "#FCFCD1" "#F9F9A6" "#F4F479" "#BDBD0F" "#7E7E0A"
+#> hashed_hex "#7E7E0A" "#BDBD0F" "#EEEC22" "#F4F479" "#F9F9A6" "#FCFCD1"
 #> 
 #> $monochrome_blue
 #>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
-#> hashed_hex "#6BC5FF" "#E1F3FF" "#C4E8FF" "#A6DBFF" "#0F9FFF" "#006CB5"
+#> hashed_hex "#006CB5" "#0F9FFF" "#6BC5FF" "#A6DBFF" "#C4E8FF" "#E1F3FF"
+#> 
+#> $blue_yellow
+#>  [1] "#006CB5" "#0F9FFF" "#6BC5FF" "#A6DBFF" "#C4E8FF" "#E1F3FF" "#FCFCD1"
+#>  [8] "#F9F9A6" "#F4F479" "#EEEC22" "#BDBD0F" "#7E7E0A"
+#> 
+#> $blue_green
+#>  [1] "#006CB5" "#0F9FFF" "#6BC5FF" "#A6DBFF" "#C4E8FF" "#E1F3FF" "#EEFAD8"
+#>  [8] "#DDF4B3" "#CCEE8C" "#ABE441" "#86BF1C" "#5A8112"
+#> 
+#> $blue_red
+#>  [1] "#006CB5" "#0F9FFF" "#6BC5FF" "#A6DBFF" "#C4E8FF" "#E1F3FF" "#FAD1D7"
+#>  [8] "#F4A6AF" "#EF7A89" "#E5233D" "#B01528" "#760E1B"
 #> 
 #> $main
 #>            [,1]      [,2]      [,3]      [,4]      [,5]      [,6]     
@@ -4068,9 +4092,12 @@ bss_palettes
 #> $main_only_color
 #>            [,1]      [,2]      [,3]      [,4]      [,5]     
 #> hashed_hex "#155F90" "#ABE441" "#E5233D" "#EEEC22" "#6BC5FF"
+#e.g.
+swatch(bss_palettes$red_green)
 ```
 
-The function `bss_pal()` allows to interpolate the palette colors for a
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" /> The
+function `bss_pal()` allows to interpolate the palette colors for a
 certain number of levels, making it possible to create shades between
 the original colors using colorRampPalette from grDevices. This command
 can be used to extend to numbers of colors in a palette, however the hex
