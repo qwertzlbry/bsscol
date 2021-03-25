@@ -117,6 +117,8 @@ With the command `bss_palettes` you can see all the coded palettes stored in a l
 ```{r}
 # the following subset color palettes are available 
 bss_palettes
+#e.g.
+swatch(bss_palettes$red_green)
 ```
 The function `bss_pal()` allows to interpolate the palette colors for a certain number of levels, making it
 possible to create shades between the original colors using colorRampPalette from grDevices. This command can be used to extend to numbers of colors in a palette, however the hex codes of some color shades can then deviate from the above bss_colors table. Therefore, I recommend to use the coded palettes mentioned above, if possible.
