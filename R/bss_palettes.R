@@ -7,6 +7,12 @@ bss_palettes <- list(
   `black_yellow`      = c(bss_colors %>% filter(col_pal==1) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
                           bss_colors %>% filter(col_pal==8) %>% arrange(-Typ) %>% select(hashed_hex) %>% t()),
 
+  `black_red`      = c(bss_colors %>% filter(col_pal==1) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
+                          bss_colors %>% filter(col_pal==7) %>% arrange(-Typ) %>% select(hashed_hex) %>% t()),
+
+  `black_green`      = c(bss_colors %>% filter(col_pal==1) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
+                       bss_colors %>% filter(col_pal==6) %>% arrange(-Typ) %>% select(hashed_hex) %>% t()),
+
   `monochrome_green`  = bss_colors %>% filter(col_pal==6) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
   `monochrome_red`    = bss_colors %>% filter(col_pal==7) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
   `red_green`         = c(bss_colors %>% filter(col_pal==7) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
@@ -33,7 +39,6 @@ bss_palettes <- list(
                                              col_pal==8|
                                              col_pal==9) %>% select(hashed_hex) %>% t()
   )
-
 
 #' @title bss_pal
 #'
