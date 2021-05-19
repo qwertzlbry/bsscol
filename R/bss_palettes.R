@@ -15,8 +15,9 @@ bss_palettes <- list(
 
   `monochrome_green`  = bss_colors %>% filter(col_pal==6) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
   `monochrome_red`    = bss_colors %>% filter(col_pal==7) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
-  `red_green`         = c(bss_colors %>% filter(col_pal==7) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
-                          bss_colors %>% filter(col_pal==6) %>% arrange(-Typ) %>% select(hashed_hex) %>% t()),
+  `red_green`         = c(bss_colors %>% filter(col_pal==7, Typ != 80,Typ != 60) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
+                          bss_colors %>% filter(hashed_hex=="#FFFFFF")  %>% select(hashed_hex) %>% t(),
+                          bss_colors %>% filter(col_pal==6,Typ != 80,Typ != 60) %>% arrange(-Typ) %>% select(hashed_hex) %>% t()),
 
   `red_yellow`        = c(bss_colors %>% filter(col_pal==7) %>% arrange(Typ) %>% select(hashed_hex) %>% t(),
                            bss_colors %>% filter(col_pal==8) %>% arrange(-Typ) %>% select(hashed_hex) %>% t()),
